@@ -60,6 +60,24 @@ public:
 	
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute,float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& EffectData) override;
+	
+	//Primary
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing= OnRep_Strength,Category = "Primary AttributeSet")
+	FGameplayAttributeData Strength;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Strength);
+
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing= OnRep_Intelligence,Category = "Primary AttributeSet")
+	FGameplayAttributeData Intelligence;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Intelligence);
+
+	
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing= OnRep_Resilience,Category = "Primary AttributeSet")
+	FGameplayAttributeData Resilience;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Resilience);
+	
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing= OnRep_Vigor,Category = "Primary AttributeSet")
+	FGameplayAttributeData Vigor;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Vigor);
 	//生命 生命上限
 	UPROPERTY(BlueprintReadOnly,ReplicatedUsing= OnRep_Health,Category = "Vital AttributeSet")
 	FGameplayAttributeData Health;
@@ -83,11 +101,73 @@ public:
 	FGameplayAttributeData MaxMana;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxMana);
 	
+	
+	//Secondary Attributes
+	//护甲
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_Armor,Category = "Secondary AttributeSet")
+	FGameplayAttributeData Armor;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Armor);
+	//穿甲
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_Armor_Pen,Category = "Secondary AttributeSet")
+	FGameplayAttributeData Armor_Pen;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Armor_Pen);
+	//暴击率
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_Critical_Rate,Category = "Secondary AttributeSet")
+	FGameplayAttributeData Critical_Rate;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Critical_Rate);
+	//爆伤
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_Critical_Damage,Category = "Secondary AttributeSet")
+	FGameplayAttributeData Critical_Damage;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Critical_Damage);
+	//生命回复
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_HealthRegeneration,Category = "Secondary AttributeSet")
+	FGameplayAttributeData HealthRegeneration;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, HealthRegeneration);
+	//魔力回复
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_ManaRegeneration,Category = "Secondary AttributeSet")
+	FGameplayAttributeData ManaRegeneration;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, ManaRegeneration);
+	//暴击抗性
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_CriticalResistance,Category = "Secondary AttributeSet")
+	FGameplayAttributeData CriticalResistance;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CriticalResistance);
+	//格挡
+	//暴击抗性
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_BlockChance,Category = "Secondary AttributeSet")
+	FGameplayAttributeData BlockChance;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, BlockChance);
 	UFUNCTION()
 	void OnRep_Mana(const FGameplayAttributeData &oldMana) const;
 	UFUNCTION()
 	void OnRep_MaxMana(const FGameplayAttributeData &oldMaxMana) const;
 	
+	
+	UFUNCTION()
+	void OnRep_Strength(const FGameplayAttributeData &oldStrength) const;
+	UFUNCTION()
+	void OnRep_Intelligence(const FGameplayAttributeData &oldIntelligence) const;
+	UFUNCTION()
+	void OnRep_Resilience(const FGameplayAttributeData &oldResilience) const;
+	UFUNCTION()
+	void OnRep_Vigor(const FGameplayAttributeData &oldVigor) const;
+	
+	UFUNCTION()
+	void OnRep_Armor(const FGameplayAttributeData &oldArmor) const;
+	UFUNCTION()
+	void OnRep_Armor_Pen(const FGameplayAttributeData &oldArmor_Pen) const;
+	UFUNCTION()
+	void OnRep_Critical_Rate(const FGameplayAttributeData &oldCritical_Rate) const;
+	UFUNCTION()
+	void OnRep_Critical_Damage(const FGameplayAttributeData &oldCritical_Damage) const;
+	
+	UFUNCTION()
+	void OnRep_HealthRegeneration(const FGameplayAttributeData &oldHealthRegeneration) const;
+	UFUNCTION()
+	void OnRep_ManaRegeneration(const FGameplayAttributeData &oldManaRegeneration) const;
+	UFUNCTION()
+	void OnRep_CriticalResistance(const FGameplayAttributeData &oldCriticalResistance) const;
+	UFUNCTION()
+	void OnRep_BlockChance(const FGameplayAttributeData &oldBlockChance) const;
 private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& EffectData,FEffectProperties& Props) const;
 };
