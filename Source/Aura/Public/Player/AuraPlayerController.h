@@ -40,7 +40,6 @@ private:
 	IEnemyInterface* LastActor;
 	IEnemyInterface* ThisActor;
 	
-	
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	void AbilityInputTagHeld(FGameplayTag InputTag);
@@ -48,7 +47,6 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly,Category = "Input")
 	TObjectPtr<UAuraInputConfig> InputConfig;
-	
 	UPROPERTY()
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
 	

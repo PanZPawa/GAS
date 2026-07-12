@@ -139,12 +139,12 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 					Spline->AddSplinePoint(PointLoc,ESplineCoordinateSpace::World);
 					DrawDebugSphere(GetWorld(),PointLoc,8,8,FColor::Green,false,5.f);
 				}
+				CachedDestination = NavPath->PathPoints[NavPath->PathPoints.Num()-1];
 				bAutoRunning = true;
 			}
 				
 			}
 		}
-		
 		FollowTime = 0.f;
 		
 	}
@@ -160,22 +160,18 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 		return;
 	}
 	
-	
 	if (bTargeting)
 	{
 		if (GetASC())GetASC()->AbilityInputTagHeld(InputTag);
 	}
 	else
 	{
-		
 		FollowTime += GetWorld()->GetDeltaSeconds();
-		
 		FHitResult Hit;
 		if (GetHitResultUnderCursor(ECC_Visibility,false,Hit))
 		{
 			CachedDestination = Hit.ImpactPoint;
 		}
-		
 		if (APawn* ControllerPawn = GetPawn())
 		{
 			const FVector WorldDirection = (CachedDestination - ControllerPawn->GetActorLocation()).GetSafeNormal();

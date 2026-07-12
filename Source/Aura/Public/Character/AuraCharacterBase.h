@@ -26,6 +26,12 @@ protected:
 	virtual auto BeginPlay() -> void override;
 	UPROPERTY(EditAnywhere, Category = "Combat" )
 	TObjectPtr<USkeletalMeshComponent> Weapon; //TObjectPtr 可以被引擎的反射和GC追踪，更加的安全，减少悬空指针的问题
+	
+	UPROPERTY(EditAnywhere, Category = "Combat" )
+	FName WeaponTipSocketName; 
+	
+	virtual FVector GetCombatSocketLocation() override;;
+	
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 	
