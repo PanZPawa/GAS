@@ -69,7 +69,6 @@ void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, 
 	if (Attribute == GetHealthAttribute())
 	{
 		NewValue = FMath::Clamp(NewValue,0.f,GetMaxHealth());
-		UE_LOG(LogTemp,Warning,TEXT("Health: %f"),NewValue);
 	}
 	if (Attribute == GetMaxHealthAttribute())
 	{
@@ -127,6 +126,8 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	if (EffectData.EvaluatedData.Attribute == GetHealthAttribute())
 	{
 		SetHealth(FMath::Clamp(GetHealth(),0.f,GetMaxHealth()));
+		UE_LOG(LogTemp,Warning,TEXT("Changed Health On %s, Health: %f"),*Props.TargetAvatarActor->GetName(),GetHealth());
+
 	}
 }
 

@@ -28,7 +28,7 @@ UAuraAttributeMenu* AAuraHUD::GetAttributeMenuWidgetController(const FWidgetCont
 		AttributeMenuWidgetController->SetWidgetControllerParams(WCParams);
 		AttributeMenuWidgetController->BindCallbacksToDependencies();
 	}
-	
+	 
 	return AttributeMenuWidgetController;
 	
 }
