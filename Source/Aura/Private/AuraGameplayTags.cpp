@@ -106,10 +106,18 @@ FString("Input Tag for 3 Button.")
 );	
     GameplayTags.InputTag_4 = UGameplayTagsManager::Get().AddNativeGameplayTag(
 FName("InputTag.4"),
-FString("Input Tag for 4 Mouse Button.")
+FString("Input Tag for 4 Button.")
 );	
     
+    GameplayTags.Damage = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Damage"),
+FString("Damage")
+);	
     
-    
-    
+    GameplayTags.Effect_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(
+    FName("Effect.HitReact"),
+    FString("HitReact Animation")
+    );	
+          
+        
 }

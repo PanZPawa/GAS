@@ -24,10 +24,18 @@ public:
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
 	virtual int32 GetLevel() override;
+	virtual void Die() override;
+
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnHealthChanged;
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnMaxHealthChanged;
+	
+	void HitReactTagChanged(const FGameplayTag CallbackTag,int32 NewCount);
+	UPROPERTY(BlueprintReadOnly,Category ="Combat")
+	bool bHitReacting = false;
+	UPROPERTY(BlueprintReadOnly,Category ="Combat")
+	float BaseWalkSpeed =250.f;
 protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
