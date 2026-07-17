@@ -10,6 +10,7 @@
 #include "GameFramework/Character.h"
 #include "Interaction/CombatInterface.h"
 #include "Net/UnrealNetwork.h"
+#include "Player/AuraPlayerController.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
@@ -159,6 +160,15 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				FGameplayTagContainer TagContainer;
 				TagContainer.AddTag(FAuraGameplayTags::Get().Effect_HitReact);
 				Props.TargetASC->TryActivateAbilitiesByTag(TagContainer);
+			}
+			
+			if (Props.TargetCharacter && Props.TargetCharacter != Props.SourceCharacter)
+			{
+				AAuraPlayerController * PC = Cast<AAuraPlayerController>(Props.SourceCharacter->GetController());
+				if (PC)
+				{
+					PC->ShowDamageNumber(LocalIncomingDamage,Props.TargetCharacter);
+				}
 			}
 		}
 	}
