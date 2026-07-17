@@ -88,6 +88,8 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().Critical_DamageDef,EvaluationParameters,Critical_Damage);
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().CriticalResistanceDef,EvaluationParameters,CriticalResistance);
 
+	FGameplayEffectContextHandle EffectContextHandle = Spec.GetContext();
+
 	Armor = FMath::Max<float>(Armor, 0.0f);
 	BlockChance = FMath::Max<float>(BlockChance, 0.0f);
 	Armor_Pen = FMath::Max<float>(Armor_Pen, 0.0f);
@@ -114,11 +116,14 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 
 	float CritBonusDamage = Critical_Damage - (CriticalResistance * CritDamageReductionCoefficient);
 	CritBonusDamage = FMath::Max(CritBonusDamage, 0);
-
-	if (FMath::FRand() * 100 < EffectiveCritRate)
+	
+	bool bCritical = FMath::FRand() * 100 < EffectiveCritRate;
+	if ( bCritical )
 	{
 		Damage *= 1.0 + CritBonusDamage;
 	}
+	UAuraAbilitySystemLibrary::SetIsCriticalHit(EffectContextHandle,bCritical);
+
 	
 	float EffectiveArmor = Armor - (Armor_Pen * ArmorPenCoefficient);
 	EffectiveArmor = FMath::Max(EffectiveArmor, 0.0f);
@@ -131,6 +136,9 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	{
 		Damage = Damage *0.5;
 	}
+	
+	UAuraAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle,bBlock);
+	
 	
 //	Damage = FMath::RoundToFloat(Damage);
 	const FGameplayModifierEvaluatedData EvaluationData(UAuraAttributeSet::GetIncomingDamageAttribute(),EGameplayModOp::Override,Damage);

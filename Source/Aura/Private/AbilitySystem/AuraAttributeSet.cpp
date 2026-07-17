@@ -6,6 +6,7 @@
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AuraGameplayTags.h"
 #include "GameplayEffectExtension.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/Data/AttributeInfo.h"
 #include "GameFramework/Character.h"
 #include "Interaction/CombatInterface.h"
@@ -118,6 +119,7 @@ void UAuraAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData
 	}
 }
 
+
 void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& EffectData)
 {
 	Super::PostGameplayEffectExecute(EffectData);
@@ -162,18 +164,26 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				Props.TargetASC->TryActivateAbilitiesByTag(TagContainer);
 			}
 			
-			if (Props.TargetCharacter && Props.TargetCharacter != Props.SourceCharacter)
-			{
-				AAuraPlayerController * PC = Cast<AAuraPlayerController>(Props.SourceCharacter->GetController());
-				if (PC)
-				{
-					PC->ShowDamageNumber(LocalIncomingDamage,Props.TargetCharacter);
-				}
-			}
+			const bool bBlock = UAuraAbilitySystemLibrary::IsBlockedHit(Props.EffectContextHandle);
+			const bool bCritical = UAuraAbilitySystemLibrary::IsCriticalHit(Props.EffectContextHandle);
+
+			ShowFloatingText(Props, LocalIncomingDamage, bBlock,bCritical);
 		}
 	}
 }
 
+void UAuraAttributeSet::ShowFloatingText(FEffectProperties& Props, const float& LocalIncomingDamage,
+	 bool bBlock, bool bCritical)
+{
+	if (Props.TargetCharacter && Props.TargetCharacter != Props.SourceCharacter)
+		{
+			AAuraPlayerController * PC = Cast<AAuraPlayerController>(Props.SourceCharacter->GetController());
+			if (PC)
+			{
+				PC->ShowDamageNumber(LocalIncomingDamage,Props.TargetCharacter);
+			}
+		}
+}
 
 
 void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& oldHealth) const 

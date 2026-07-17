@@ -187,4 +187,6 @@ public:
 	void OnRep_BlockChance(const FGameplayAttributeData &oldBlockChance) const;
 private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& EffectData,FEffectProperties& Props) const;
+	
+	void ShowFloatingText(FEffectProperties& Props,const float &LocalIncomingDamage,bool bBlock = false,bool bCritical= false);
 };
