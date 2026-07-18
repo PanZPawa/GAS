@@ -149,7 +149,7 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 					for (const FVector& PointLoc: NavPath->PathPoints)
 					{
 						Spline->AddSplinePoint(PointLoc,ESplineCoordinateSpace::World);
-						DrawDebugSphere(GetWorld(),PointLoc,8,8,FColor::Green,false,5.f);
+					//	DrawDebugSphere(GetWorld(),PointLoc,8,8,FColor::Green,false,5.f);
 					}
 					CachedDestination = NavPath->PathPoints[NavPath->PathPoints.Num()-1];
 					bAutoRunning = true;
@@ -241,6 +241,7 @@ void AAuraPlayerController::SetupInputComponent()
  
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 {
+	if (bAutoRunning) bAutoRunning = false;
 	const FVector2D InputAxisVector =  InputActionValue.Get<FVector2D>();
 	const FRotator YawRotation(0.f,GetControlRotation().Yaw,0.f);
 	
