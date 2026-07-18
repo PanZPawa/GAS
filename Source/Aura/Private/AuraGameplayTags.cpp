@@ -114,10 +114,49 @@ FName("Damage"),
 FString("Damage")
 );	
     
+    //元素伤害
+    GameplayTags.Damage_Fire = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Damage.Fire"),
+FString("Fire Damage type ")
+);	
+    GameplayTags.Damage_Lightning = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Damage.Lightning"),
+FString("Lightning Damage type ")
+);	    GameplayTags.Damage_Arcane = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Damage.Arcane"),
+FString("Arcane Damage type ")
+);	    GameplayTags.Damage_Physical = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Damage.Physical"),
+FString("Physical Damage type ")
+);	
+    
+    //元素抗性
+    GameplayTags.Attributes_Resistance_Fire = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Attributes.Resistance.Fire"),
+FString("Fire Resistance type ")
+);	
+    GameplayTags.Attributes_Resistance_Lightning = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Attributes.Resistance.Lightning"),
+FString("Lightning Resistance type ")
+);	    GameplayTags.Attributes_Resistance_Arcane = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Attributes.Resistance.Arcane"),
+FString("Arcane Resistance type ")
+);	    GameplayTags.Attributes_Resistance_Physical = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Attributes.Resistance.Physical"),
+FString("Physical Resistance type ")
+);	
+    
+    
+    GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Fire,GameplayTags.Attributes_Resistance_Fire);
+    GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Lightning,GameplayTags.Attributes_Resistance_Lightning);
+    GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Arcane,GameplayTags.Attributes_Resistance_Arcane);
+    GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Physical,GameplayTags.Attributes_Resistance_Physical);
+
+    
     GameplayTags.Effect_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(
-    FName("Effect.HitReact"),
-    FString("HitReact Animation")
-    );	
+FName("Effect.HitReact"),
+FString("HitReact Animation")
+);	
           
         
 }

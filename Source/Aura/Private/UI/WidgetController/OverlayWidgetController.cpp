@@ -49,7 +49,6 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
 		[this](const FGameplayTagContainer& AssestTags)
 		{
-			//TODO:
 			for (auto& Tag: AssestTags)
 			{
 				

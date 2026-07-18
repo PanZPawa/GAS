@@ -143,7 +143,23 @@ public:
 	FGameplayAttributeData BlockChance;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, BlockChance);
 	
+	//元素抗性 
 	
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_FireResistance,Category = "Secondary AttributeSet")
+	FGameplayAttributeData FireResistance;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, FireResistance);
+	
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_LightningResistance,Category = "Secondary AttributeSet")
+	FGameplayAttributeData LightningResistance;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, LightningResistance);
+	
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_ArcaneResistance,Category = "Secondary AttributeSet")
+	FGameplayAttributeData ArcaneResistance;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,ArcaneResistance);
+	
+	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_PhysicalResistance,Category = "Secondary AttributeSet")
+	FGameplayAttributeData PhysicalResistance;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, PhysicalResistance);
 	/*
 	 * Meta Attributes
 	 */
@@ -185,6 +201,15 @@ public:
 	void OnRep_CriticalResistance(const FGameplayAttributeData &oldCriticalResistance) const;
 	UFUNCTION()
 	void OnRep_BlockChance(const FGameplayAttributeData &oldBlockChance) const;
+	
+	UFUNCTION()
+	void OnRep_FireResistance(const FGameplayAttributeData &oldFireResistance) const;
+	UFUNCTION()
+	void OnRep_LightningResistance(const FGameplayAttributeData &oldLightningResistance) const;	
+	UFUNCTION()
+	void OnRep_ArcaneResistance(const FGameplayAttributeData &oldArcaneResistance) const;	
+	UFUNCTION()
+	void OnRep_PhysicalResistance(const FGameplayAttributeData &oldPhysicalResistance) const;
 private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& EffectData,FEffectProperties& Props) const;
 	

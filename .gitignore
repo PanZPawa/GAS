@@ -5,7 +5,9 @@ Saved
 Build
 Docs
 RPG_Aura_技术架构文档.md
+CLAUDE.md
 
+.gitgnore
 .vscode
 .vs
 *.VC.db
