@@ -180,7 +180,7 @@ void UAuraAttributeSet::ShowFloatingText(FEffectProperties& Props, const float& 
 			AAuraPlayerController * PC = Cast<AAuraPlayerController>(Props.SourceCharacter->GetController());
 			if (PC)
 			{
-				PC->ShowDamageNumber(LocalIncomingDamage,Props.TargetCharacter);
+				PC->ShowDamageNumber(LocalIncomingDamage,Props.TargetCharacter,bBlock,bCritical);
 			}
 		}
 }

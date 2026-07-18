@@ -114,10 +114,11 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	float EffectiveCritRate = Critical_Rate - (CriticalResistance * CritRateReductionCoefficient);
 	EffectiveCritRate = FMath::Max(EffectiveCritRate, 0);
 
-	float CritBonusDamage = Critical_Damage - (CriticalResistance * CritDamageReductionCoefficient);
+	float CritBonusDamage = Critical_Damage/100.f - (CriticalResistance * CritDamageReductionCoefficient);
 	CritBonusDamage = FMath::Max(CritBonusDamage, 0);
 	
-	bool bCritical = FMath::FRand() * 100 < EffectiveCritRate;
+	bool bCritical = FMath::FRand() * 100 < EffectiveCritRate ;
+
 	if ( bCritical )
 	{
 		Damage *= 1.0 + CritBonusDamage;
