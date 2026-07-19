@@ -158,5 +158,13 @@ FName("Effect.HitReact"),
 FString("HitReact Animation")
 );	
           
+    
+    
+    //Attack
+    GameplayTags.Ability_Attack_Melee = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Ability.Attack.Melee"),
+FString("Melee  Attack")
+);	
+         
         
 }

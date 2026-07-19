@@ -24,7 +24,7 @@ void UBTService_FindNearestPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, u
 	
 	for (AActor* Actor : ActorsWithTag)
 	{
-		GEngine->AddOnScreenDebugMessage(2,.5f,FColor::Yellow,Actor->GetName());
+		//GEngine->AddOnScreenDebugMessage(2,.5f,FColor::Yellow,Actor->GetName());
 	
 		if (IsValid(Actor) && IsValid(OwningPawn))
 		{

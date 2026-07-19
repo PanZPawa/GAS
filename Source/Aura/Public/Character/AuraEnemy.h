@@ -26,9 +26,15 @@ public:
 	virtual void PossessedBy(AController* installedController) override;
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
+	
+	
+	//Combat Interface
 	virtual int32 GetLevel() override;
 	virtual void Die() override;
-
+	
+	virtual void SetCombatTarget_Implementation(AActor* InTarget) override;
+	virtual AActor* GetCombatTarget_Implementation() const override;
+	
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnHealthChanged;
 	UPROPERTY(BlueprintAssignable)
@@ -39,6 +45,8 @@ public:
 	bool bHitReacting = false;
 	UPROPERTY(BlueprintReadOnly,Category ="Combat")
 	float BaseWalkSpeed =250.f;
+	UPROPERTY(BlueprintReadWrite,Category ="Combat")
+	TObjectPtr<AActor> CombatTarget;
 protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;

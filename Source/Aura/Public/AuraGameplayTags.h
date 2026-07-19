@@ -52,6 +52,8 @@ public:
 	FGameplayTag Damage_Physical;
 
 	
+	FGameplayTag Ability_Attack_Melee;
+	
 	TMap<FGameplayTag,FGameplayTag> DamageTypesToResistances;
 	
 	FGameplayTag Effect_HitReact;
