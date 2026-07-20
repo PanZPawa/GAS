@@ -26,15 +26,18 @@ public:
 	
 	/*Combat Interface*/
 	
-	virtual FVector GetCombatSocketLocation_Implementation() override;;
+	virtual FVector GetCombatSocketLocation_Implementation(const FGameplayTag &MontageTag) override;;
 	virtual bool IsDead_Implementation() const override;
 	virtual AActor* GetAvatar_Implementation()  override;
 	virtual void Die() override; 
 	virtual UAnimMontage* GetHitReactMontage_Implementation()  override;
-
+	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation()  override;
 	/*end Combat Interfacew*/
 	UFUNCTION(NetMulticast,Reliable)
 	virtual void MulticastHandleDeath(); 
+	
+	UPROPERTY(EditAnywhere,Category ="Combat")
+	TArray<FTaggedMontage> AttackMontages;
 protected:
 	virtual auto BeginPlay() -> void override;
 	UPROPERTY(EditAnywhere, Category = "Combat" )
@@ -43,7 +46,12 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Combat" )
 	FName WeaponTipSocketName; 
 	
-
+	UPROPERTY(EditAnywhere, Category = "Combat" )
+	FName LHandSocketName;
+	
+	UPROPERTY(EditAnywhere, Category = "Combat" )
+	FName RHandSocketName; 
+	
 
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;

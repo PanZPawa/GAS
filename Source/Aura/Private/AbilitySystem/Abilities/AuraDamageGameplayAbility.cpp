@@ -8,6 +8,9 @@
 
 void UAuraDamageGameplayAbility::CauseDamage(AActor* TargetActor)
 {
+	
+
+	//if (!GetAvatarActorFromActorInfo()->HasAuthority()) return;
 	FGameplayEffectSpecHandle DamageSpecHandle = MakeOutgoingGameplayEffectSpec(DamageEffectClass,1.f);
 	
 	for (auto &Pair:DamageTypes)

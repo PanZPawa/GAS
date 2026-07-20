@@ -166,5 +166,18 @@ FName("Ability.Attack.Melee"),
 FString("Melee  Attack")
 );	
          
-        
+ 
+    //Montage
+    GameplayTags.Montage_Attack_Weapon = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Montage.Attack.Weapon"),
+FString("Montage witch Attack by Weapon.")
+);	
+    GameplayTags.Montage_Attack_RHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Montage.Attack.RHand"),
+FString("Montage witch Attack by Right Hand.")
+);	    GameplayTags.Montage_Attack_LHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Montage.Attack.LHand"),
+FString("Montage witch Attack by Left Hand.")
+);	      
+    
 }
