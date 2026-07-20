@@ -23,10 +23,16 @@ public:
 	AAuraCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	virtual UAttributeSet* GetAttributeSet() const {return AttributeSet;}
+	
+	/*Combat Interface*/
+	
+	virtual FVector GetCombatSocketLocation_Implementation() override;;
+	virtual bool IsDead_Implementation() const override;
+	virtual AActor* GetAvatar_Implementation()  override;
+	virtual void Die() override; 
 	virtual UAnimMontage* GetHitReactMontage_Implementation()  override;
-	
-	virtual void Die() override;
-	
+
+	/*end Combat Interfacew*/
 	UFUNCTION(NetMulticast,Reliable)
 	virtual void MulticastHandleDeath(); 
 protected:
@@ -37,11 +43,8 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Combat" )
 	FName WeaponTipSocketName; 
 	
-	//Combat Interface
-	virtual FVector GetCombatSocketLocation_Implementation() override;;
-	virtual bool IsDead_Implementation() const override;
-	virtual AActor* GetAvatar_Implementation() const override;
-	
+
+
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 	
@@ -64,6 +67,7 @@ protected:
 
 
 private:
+	bool bIsDead = false;
 	UPROPERTY(EditAnywhere, Category ="Abilities")
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
 		

@@ -135,7 +135,7 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	
 	FRealCurve* ArmorPenCurve = CurveTable->FindCurve(
 	FName("ArmorPen"),   FString("")        );
-	float ArmorPenCoefficient = ArmorPenCurve->Eval(Cast<ICombatInterface>(Spec.GetContext().GetSourceObject())->GetLevel());
+	float ArmorPenCoefficient = ArmorPenCurve->Eval(Cast<ICombatInterface>(SourceActor)->GetLevel());
 	
 	
 	FRealCurve* CritRateReductionCurve = CurveTable->FindCurve(

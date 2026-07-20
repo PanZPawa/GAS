@@ -32,13 +32,14 @@ UAnimMontage* AAuraCharacterBase::GetHitReactMontage_Implementation()
 }
 
 void AAuraCharacterBase::Die()
-{
+{	
+
 	Weapon->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepWorld,true));
 	MulticastHandleDeath();
 }
 
 void AAuraCharacterBase::MulticastHandleDeath_Implementation()
-{
+{	
 	Weapon->SetSimulatePhysics(true);
 	Weapon->SetEnableGravity(true);
 	Weapon->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
@@ -49,6 +50,7 @@ void AAuraCharacterBase::MulticastHandleDeath_Implementation()
 	GetMesh()->SetCollisionResponseToChannel(ECC_WorldStatic,ECR_Block);
 	
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	bIsDead = true;
 }
 
 void AAuraCharacterBase::BeginPlay()
@@ -60,6 +62,16 @@ void AAuraCharacterBase::BeginPlay()
 FVector AAuraCharacterBase::GetCombatSocketLocation_Implementation()
 {
 	return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
+
+bool AAuraCharacterBase::IsDead_Implementation() const
+{
+	return bIsDead;
+}
+
+AActor* AAuraCharacterBase::GetAvatar_Implementation() 
+{
+	return this;
 }
 
 void AAuraCharacterBase::InitAbilityActorInfo()
