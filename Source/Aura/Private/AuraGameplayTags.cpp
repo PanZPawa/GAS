@@ -146,12 +146,20 @@ FName("Attributes.Resistance.Physical"),
 FString("Physical Resistance type ")
 );	
     
-    
     GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Fire,GameplayTags.Attributes_Resistance_Fire);
     GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Lightning,GameplayTags.Attributes_Resistance_Lightning);
     GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Arcane,GameplayTags.Attributes_Resistance_Arcane);
     GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Physical,GameplayTags.Attributes_Resistance_Physical);
 
+    
+    GameplayTags.Abilities_Fire_FireBolt = UGameplayTagsManager::Get().AddNativeGameplayTag(
+FName("Abilities.Fire.FireBolt"),
+FString("Abilities.Fire.FireBolt")
+);	
+    
+    
+    
+    
     
     GameplayTags.Effect_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(
 FName("Effect.HitReact"),

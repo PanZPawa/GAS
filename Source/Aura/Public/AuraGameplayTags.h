@@ -50,7 +50,10 @@ public:
 	FGameplayTag Damage_Lightning;
 	FGameplayTag Damage_Arcane;
 	FGameplayTag Damage_Physical;
-
+	
+	FGameplayTag Abilities_Fire_FireBolt;
+	
+	
 	FGameplayTag Montage_Attack_Weapon;
 	FGameplayTag Montage_Attack_RHand;
 	FGameplayTag Montage_Attack_LHand;
